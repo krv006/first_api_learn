@@ -1,17 +1,20 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.generics import ListCreateAPIView,RetrieveUpdateDestroyAPIView
 
 from .models import Author, Book, Publisher, Magazine
 from .serializers import AuthorSerializer, BookSerializer, PublisherSerializer, MagazineSerializer
 # BookSerializer
 
 
-class AuthorListAPIView(APIView):
-    def get(self,request):
-        authors = Author.objects.all()
-        serializer = AuthorSerializer(authors, many=True)
-        return Response(serializer.data)
+class AuthorListAPIView(ListCreateAPIView):
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer
+
+class AuthorDetailAPIView(RetrieveUpdateDestroyAPIView):
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer
 
 
 class BookListAPIView(APIView):
@@ -19,7 +22,6 @@ class BookListAPIView(APIView):
         books = Book.objects.all()
         serializer = BookSerializer(books, many=True)
         return Response(serializer.data)
-    
 
 
 class PublisherListAPIView(APIView):
