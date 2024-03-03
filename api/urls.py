@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AuthorDetailAPIView, AuthorListAPIView, BookListAPIView, PublisherListAPIView, MagazineListAPIView
+from .views import *
 
 urlpatterns = [
 
@@ -7,7 +7,7 @@ urlpatterns = [
     path('authors/<int:pk>/', AuthorDetailAPIView.as_view(),name='authors-detail'),
 
     path('books/', BookListAPIView.as_view(),name='books-list'),
-    path('books/<int:pk>/', BookListAPIView.as_view(),name='books-detail'),
+    path('books/<int:pk>/', BookDetailAPIView.as_view(),name='books-detail'),
 
     path('publishers/', PublisherListAPIView.as_view(),name='publishers-list'),
     path('publishers/<int:pk>/', PublisherListAPIView.as_view(),name='publishers-detail'),
