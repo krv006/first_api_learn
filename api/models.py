@@ -12,7 +12,18 @@ class Author(models.Model):
     def __str__(self):
         return self.name
 
+class Publisher(models.Model):
+    name = models.CharField(max_length=150)
+    established_date = models.DateField()
+    country = models.CharField(max_length=100)
+    website = models.URLField()
+    headquarters_location = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
 class Book(models.Model):
+    publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE, blank = True )
     title = models.CharField(max_length=255)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     publication_date = models.DateField()
@@ -23,15 +34,6 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
-class Publisher(models.Model):
-    name = models.CharField(max_length=150)
-    established_date = models.DateField()
-    country = models.CharField(max_length=100)
-    website = models.URLField()
-    headquarters_location = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.name
 
 class Magazine(models.Model):
     title = models.CharField(max_length=200)
