@@ -20,6 +20,7 @@ class PublisherSerializer(serializers.ModelSerializer):
 
 
 class MagazineSerializer(serializers.ModelSerializer):
+    publisher = PublisherSerializer()
     class Meta:
         model = Magazine
-        fields = '__all__'
+        fields = ['id', 'title', 'publication_date', 'category', 'price', 'editor', 'publisher' ]

@@ -10,9 +10,9 @@ urlpatterns = [
     path('books/<int:pk>/', BookDetailAPIView.as_view(),name='books-detail'),
 
     path('publishers/', PublisherListAPIView.as_view(),name='publishers-list'),
-    path('publishers/<int:pk>/', PublisherListAPIView.as_view(),name='publishers-detail'),
+    path('publishers/<int:pk>/', PublisherDetailAPIView.as_view(),name='publishers-detail'),
 
     path('magazines/', MagazineListAPIView.as_view(),name='magazines-list'),
-    path('magazines/<int:pk>/', MagazineListAPIView.as_view(),name='magazines-detail'),
+    path('magazines/<int:pk>/', MagazineDetailAPIView.as_view(),name='magazines-detail'),
 
 ]

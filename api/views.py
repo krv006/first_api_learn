@@ -43,6 +43,10 @@ class PublisherListAPIView(ListCreateAPIView):
     queryset = Publisher.objects.all()
     serializer_class = PublisherSerializer
 
+class PublisherDetailAPIView(RetrieveUpdateDestroyAPIView):
+    queryset = Publisher.objects.all()
+    serializer_class = PublisherSerializer
+
 
     # def get(self,request):
     #     publishers = Publisher.objects.all()
@@ -50,7 +54,23 @@ class PublisherListAPIView(ListCreateAPIView):
     #     return Response(serializer.data)
 
 
+
 class MagazineListAPIView(ListCreateAPIView):
+
+    serializer_class = MagazineSerializer
+
+    def get_queryset(self):
+        queryset = Magazine.objects.all()
+        publisher_id = self.request.query_params.get('publisher_id', None)
+
+
+        if publisher_id:
+            queryset = queryset.filter(publisher_id = publisher_id)
+        return queryset
+
+
+
+class MagazineDetailAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Magazine.objects.all()
     serializer_class = MagazineSerializer
 
